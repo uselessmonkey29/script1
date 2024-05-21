@@ -1,0 +1,13 @@
+import random
+
+chars = "!@#$%^&*abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+
+print("Witaj w Generatorze Haseł!")
+
+passwordLength = int(input("Podaj długość hasła: "))
+password = ""
+
+for i in range(passwordLength):
+    password += chars[random.randint(0,68)]
+
+print(password)
