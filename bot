@@ -1,0 +1,50 @@
+import discord
+from discord.ext import commands
+import botlogic
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Zalogowaliśmy się jako {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Cześć, jestem bot{bot.user}!')
+
+@bot.command()
+async def bye(ctx):
+    await ctx.send("\\U0001f642")
+
+
+@bot.command()
+async def password(ctx, count = 8):
+    await ctx.send(botlogic.gen(count))
+
+@bot.command()
+async def meme(ctx):
+    with open("meme.png", "rb") as f:
+        picture = discord.File(f)
+
+    await ctx.send(file=picture)
+
+@bot.command()
+async def ekoporada(ctx, count = 0):
+    if count == 0:
+        await ctx.send('Cześć, jakiej ci mogę udzielić porady?\n\n1 - jak oszczędzać więcej wody\n2 - jak pomóc środowisku\n3 - jak prawidłowo sortować śmieci')
+    elif count == 1:
+        await ctx.send("Zainstaluj oszczędne urządzenia, takie jak perlatory i oszczędne głowice prysznicowe, oraz naprawiaj przeciekające krany. Myj naczynia w zmywarce i zbieraj deszczówkę do podlewania ogrodu.")
+    elif count == 2:
+        await ctx.send("Ogranicz zużycie plastiku, segreguj śmieci i kompostuj odpady organiczne. Używaj energooszczędnych urządzeń, korzystaj z transportu publicznego i sadź drzewa.")
+    elif count == 3:
+        await ctx.send("Segreguj śmieci na papier, plastik i metal, szkło oraz odpady organiczne zgodnie z lokalnymi przepisami. Opróżniaj i płucz opakowania przed wrzuceniem oraz oddawaj elektrośmieci, baterie i chemikalia do specjalnych punktów zbiórki.")
+
+
+    
+
+
+
+bot.run("MTI0NTA1OTg3MzE1OTI1NDE5Ng.G_DmFL.OG6MJz4wjszp3LGXx4XcaWgMHv9SwT-qlz6eV8")
